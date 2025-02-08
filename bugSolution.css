@@ -1,0 +1,10 @@
+The solution is to avoid using `calc()` directly within the `@media` query. Instead, pre-calculate the breakpoint value and insert it into the CSS using a preprocessor (like Sass or Less) or directly in JavaScript and inject into a `<style>` tag. Here's how you can do it with JavaScript:
+
+```javascript
+const viewportWidth = window.innerWidth;
+const breakpoint = viewportWidth - 100; // Calculate breakpoint
+
+document.body.insertAdjacentHTML('beforeend', `<style>@media (max-width: ${breakpoint}px) { .element { width: 50%; }}</style>`);
+```
+
+This calculates the breakpoint dynamically using JavaScript and then dynamically inserts it into a CSS `<style>` tag.  This ensures the media query correctly uses the calculated value. Alternatively you can use a CSS preprocessor for the same result.
